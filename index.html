@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KISS AGENCY</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f2f0eb;
+    --red: #e82b2b;
+    --gray: #888;
+    --border: 2px solid #0a0a0a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    cursor: crosshair;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 28px 40px 18px;
+    border-bottom: var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .nav-logo span {
+    color: var(--red);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--red);
+    transition: width 0.25s ease;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ─── HERO ─── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 73px);
+    border-bottom: var(--border);
+  }
+
+  .hero-left {
+    padding: 60px 40px;
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 130px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-headline .line-accent {
+    color: var(--red);
+    display: block;
+  }
+
+  .hero-sub {
+    margin-top: 40px;
+    max-width: 420px;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    border: var(--border);
+    padding: 4px 10px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .hero-cta {
+    display: inline-block;
+    margin-top: 48px;
+    padding: 16px 32px;
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    border: 2px solid var(--red);
+    transition: background 0.2s, color 0.2s;
+    cursor: crosshair;
+  }
+
+  .hero-cta:hover {
+    background: transparent;
+    color: var(--red);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(100px, 14vw, 200px);
+    line-height: 1;
+    color: var(--black);
+  }
+
+  .price-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: 16px;
+    max-width: 220px;
+    line-height: 1.7;
+  }
+
+  .platforms-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80px;
+  }
+
+  .platform-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .platform-chip:first-child {
+    border-right: var(--border);
+    background: #0a0a0a;
+    color: var(--white);
+  }
+
+  .platform-chip .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* ─── WHO SECTION ─── */
+  .section {
+    border-bottom: var(--border);
+  }
+
+  .section-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+  }
+
+  .section-label {
+    padding: 48px 40px;
+    border-right: var(--border);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    writing-mode: horizontal-tb;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 52px;
+  }
+
+  .section-content {
+    padding: 48px 48px 48px 52px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0;
+    margin-top: 32px;
+    border-top: var(--border);
+    border-left: var(--border);
+  }
+
+  .audience-item {
+    border-right: var(--border);
+    border-bottom: var(--border);
+    padding: 20px 18px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+
+  .audience-item:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .audience-item .num {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  /* ─── WHAT YOU GET ─── */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: var(--border);
+    border-left: var(--border);
+    margin-top: 32px;
+  }
+
+  .what-item {
+    border-right: var(--border);
+    border-bottom: var(--border);
+    padding: 28px 24px;
+  }
+
+  .what-item-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .what-item-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .what-item-body {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.75;
+  }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.15;
+    max-width: 780px;
+  }
+
+  .philosophy-text em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .philosophy-footnote {
+    margin-top: 36px;
+    font-size: 12px;
+    color: var(--gray);
+    max-width: 480px;
+    line-height: 1.8;
+    font-style: italic;
+    border-left: 3px solid var(--red);
+    padding-left: 16px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 320px;
+  }
+
+  .contact-left {
+    padding: 60px 48px;
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    line-height: 0.95;
+  }
+
+  .contact-title span { color: var(--red); }
+
+  .contact-right {
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .contact-field label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .contact-field input,
+  .contact-field textarea {
+    background: transparent;
+    border: none;
+    border-bottom: var(--border);
+    padding: 8px 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--black);
+    outline: none;
+    cursor: crosshair;
+    resize: none;
+    transition: border-color 0.2s;
+  }
+
+  .contact-field input:focus,
+  .contact-field textarea:focus {
+    border-bottom-color: var(--red);
+  }
+
+  .contact-field input::placeholder,
+  .contact-field textarea::placeholder {
+    color: #bbb;
+  }
+
+  .submit-btn {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 14px 28px;
+    background: var(--black);
+    color: var(--white);
+    border: var(--border);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    cursor: crosshair;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .submit-btn:hover {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: var(--border);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--black);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── TICKER ─── */
+  .ticker {
+    overflow: hidden;
+    border-bottom: var(--border);
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 24s linear infinite;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker-sep {
+    color: var(--red);
+    margin: 0 20px;
+  }
+
+  /* ─── FADE IN ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 20px 14px; }
+    .nav-links { gap: 16px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { border-top: var(--border); }
+    .section-inner { grid-template-columns: 1fr; }
+    .section-label { writing-mode: horizontal-tb; border-right: none; border-bottom: var(--border); padding: 20px; }
+    .contact-section { grid-template-columns: 1fr; }
+    .contact-left { border-right: none; border-bottom: var(--border); padding: 40px 24px; }
+    .contact-right { padding: 40px 24px; }
+    .hero-left { padding: 40px 20px; }
+    .section-content { padding: 32px 24px; }
+    .what-grid { grid-template-columns: 1fr; }
+    .platforms-row { height: 60px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KISS<span>.</span>AGENCY</div>
+  <ul class="nav-links">
+    <li><a href="#who">Who</a></li>
+    <li><a href="#what">What</a></li>
+    <li><a href="#why">Why</a></li>
+    <li><a href="#contact">Start</a></li>
+  </ul>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner">
+    One video. One dollar. One conversation.
+    <span class="ticker-sep">✦</span>
+    IG Reels &amp; TikTok
+    <span class="ticker-sep">✦</span>
+    Built for the bold
+    <span class="ticker-sep">✦</span>
+    Restaurants · Vendors · Pop-ups · Creators
+    <span class="ticker-sep">✦</span>
+    No long-term contracts
+    <span class="ticker-sep">✦</span>
+    Script. Shoot. Edit. Done.
+    <span class="ticker-sep">✦</span>
+    One video. One dollar. One conversation.
+    <span class="ticker-sep">✦</span>
+    IG Reels &amp; TikTok
+    <span class="ticker-sep">✦</span>
+    Built for the bold
+    <span class="ticker-sep">✦</span>
+    Restaurants · Vendors · Pop-ups · Creators
+    <span class="ticker-sep">✦</span>
+    No long-term contracts
+    <span class="ticker-sep">✦</span>
+    Script. Shoot. Edit. Done.
+    <span class="ticker-sep">✦</span>
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-tag">New Business Special</div>
+      <h1 class="hero-headline">
+        Keep<br>
+        It<br>
+        <span class="line-accent">Simple.</span>
+      </h1>
+      <p class="hero-sub">
+        You built something real. Now let people see it. KISS Agency gets your first video made — scripted, shot, and edited — for a single dollar. No strings. No agencies charging premiums you can't afford yet.
+      </p>
+    </div>
+    <a href="#contact" class="hero-cta">Book your $1 video →</a>
+  </div>
+
+  <div class="hero-right">
+    <div class="price-block">
+      <div class="price-amount">$1</div>
+      <div class="price-label">flat. first video. no catch.</div>
+      <p class="price-note">Includes script, shot list, mood board, and full edit. Yours to post.</p>
+    </div>
+    <div class="platforms-row">
+      <div class="platform-chip" style="background: var(--black); color: var(--white);">
+        <span class="dot"></span> Instagram Reels
+      </div>
+      <div class="platform-chip" style="background: var(--white);">
+        <span class="dot"></span> TikTok
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="section" id="who">
+  <div class="section-inner">
+    <div class="section-label">Who we work with</div>
+    <div class="section-content fade-in">
+      <h2 class="section-title">You're new.<br>That's the point.</h2>
+      <p style="max-width:560px; color:#333; line-height:1.85;">
+        KISS Agency is designed for businesses that are just getting started — not brands that already have a team. You have a great product and zero time to figure out social media. We handle the content side while you focus on running your operation.
+      </p>
+      <div class="audience-grid">
+        <div class="audience-item"><span class="num">01</span>Restaurants &amp; Food</div>
+        <div class="audience-item"><span class="num">02</span>Pop-ups &amp; Vendors</div>
+        <div class="audience-item"><span class="num">03</span>Local Creators</div>
+        <div class="audience-item"><span class="num">04</span>Boutiques &amp; Shops</div>
+        <div class="audience-item"><span class="num">05</span>Service Providers</div>
+        <div class="audience-item"><span class="num">06</span>Anyone Starting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section class="section" id="what">
+  <div class="section-inner">
+    <div class="section-label">What's included</div>
+    <div class="section-content fade-in">
+      <h2 class="section-title">Your $1 covers more<br>than you'd think.</h2>
+      <div class="what-grid">
+        <div class="what-item">
+          <div class="what-item-num">15</div>
+          <div class="what-item-title">Min. Consultation</div>
+          <p class="what-item-body">A focused conversation on your brand image, goals, and what's holding you back. This shapes everything we make.</p>
+        </div>
+        <div class="what-item">
+          <div class="what-item-num">✦</div>
+          <div class="what-item-title">Custom Script</div>
+          <p class="what-item-body">Written around your voice. No template, no filler. A real script built for your specific audience.</p>
+        </div>
+        <div class="what-item">
+          <div class="what-item-num">✦</div>
+          <div class="what-item-title">Shot List + Mood Board</div>
+          <p class="what-item-body">Visual direction for the shoot so you walk in knowing exactly what to capture and why.</p>
+        </div>
+        <div class="what-item">
+          <div class="what-item-num">✦</div>
+          <div class="what-item-title">Full Edit Included</div>
+          <p class="what-item-body">We cut and deliver a finished video ready to post. No raw footage dump. A complete, platform-ready piece.</p>
+        </div>
+      </div>
+      <p style="margin-top:28px; font-size:11px; color: var(--gray); font-style: italic; border-left: 3px solid #ddd; padding-left:14px; line-height:1.8;">
+        After posting, we'll ask for 30 days of performance stats — views, reach, engagement. This helps us understand what's working and where to sharpen things. That feedback loop is part of the process.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section" id="why">
+  <div class="section-inner">
+    <div class="section-label">Why it exists</div>
+    <div class="section-content fade-in">
+      <p class="philosophy-text">
+        Most new businesses die not because the idea was bad — but because <em>no one saw it.</em>
+        Getting your first video made shouldn't require a budget you don't have yet.
+      </p>
+      <p class="philosophy-footnote">
+        The goal isn't just one video. It's giving you the mental and financial breathing room to test the waters, observe your own brand from the outside, and figure out your roadmap — without committing to a retainer or paying a premium you haven't earned yet.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-left">
+    <div>
+      <div class="hero-tag" style="margin-bottom:24px;">Let's start</div>
+      <h2 class="contact-title">
+        Ready to<br><span>show up?</span>
+      </h2>
+    </div>
+    <p style="font-size:12px; color:#555; max-width:300px; line-height:1.8; margin-top:32px;">
+      Drop your info and we'll be in touch to schedule your 15-minute consultation. Your $1 video starts here.
+    </p>
+  </div>
+  <div class="contact-right">
+    <div class="contact-field">
+      <label>Your name</label>
+      <input type="text" placeholder="Jane Doe">
+    </div>
+    <div class="contact-field">
+      <label>Business name</label>
+      <input type="text" placeholder="What's it called?">
+    </div>
+    <div class="contact-field">
+      <label>Email</label>
+      <input type="email" placeholder="you@yourbusiness.com">
+    </div>
+    <div class="contact-field">
+      <label>What do you do? (One line.)</label>
+      <textarea rows="2" placeholder="e.g. We make Jamaican patties from scratch in East Atlanta."></textarea>
+    </div>
+    <button class="submit-btn" onclick="handleSubmit()">Send it →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KISS.AGENCY</div>
+  <span>© 2025 — Keep It Simple.</span>
+  <span style="color: var(--red);">$1. One video. Your move.</span>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const scrollObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === `#${e.target.id}` ? 'var(--red)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => scrollObs.observe(s));
+
+  function handleSubmit() {
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = "Sent. ✦";
+    btn.style.background = '#0a0a0a';
+    btn.style.borderColor = '#0a0a0a';
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>
