@@ -53,13 +53,23 @@
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
     letter-spacing: 0.08em;
     line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
   }
 
-  .nav-logo span {
+  .nav-logo-kiss {
+    font-size: 56px;
     color: var(--red);
+  }
+
+  .nav-logo-agency {
+    font-size: 16px;
+    color: var(--black);
+    letter-spacing: 0.2em;
+    padding-bottom: 4px;
   }
 
   .nav-links {
@@ -501,6 +511,11 @@
     margin: 0 20px;
   }
 
+  .ticker-brand {
+    color: var(--red);
+    font-weight: 700;
+  }
+
   /* ─── FADE IN ─── */
   .fade-in {
     opacity: 0;
@@ -511,6 +526,387 @@
   .fade-in.visible {
     opacity: 1;
     transform: none;
+  }
+
+  /* ─── HOW WE SHOOT ─── */
+  .shoot-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shoot-top {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border-bottom: var(--border);
+  }
+
+  .shoot-top-label {
+    padding: 48px 40px;
+    border-right: var(--border);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 52px;
+  }
+
+  .shoot-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 5.5vw, 80px);
+    line-height: 1.0;
+    letter-spacing: 0.02em;
+    padding: 48px 52px;
+  }
+
+  .shoot-headline span {
+    color: var(--red);
+  }
+
+  .shoot-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border-top: none;
+  }
+
+  .shoot-device-col {
+    border-right: var(--border);
+    padding: 52px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    background: var(--black);
+  }
+
+  /* ─── PHONE SCREEN ─── */
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .phone-body {
+    width: 160px;
+    height: 320px;
+    background: #0a0a0a;
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px #2a2a2a,
+      0 24px 64px rgba(0,0,0,0.8),
+      inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .phone-dynamic-island {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 16px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+  }
+
+  .phone-rec-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 5px rgba(232,43,43,0.8);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  .phone-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 18px 28px;
+  }
+
+  .phone-screen-top {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .phone-screen-tag {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #3a3a3a;
+  }
+
+  .phone-screen-mid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .phone-model-name {
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .phone-screen-bot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .phone-specs {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  .camera-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    padding: 0 4px;
+  }
+
+  .camera-label-text {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .cam-rec {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .rec-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+    animation: pulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 6px rgba(232,43,43,0.6);
+  }
+
+  .shoot-device-note {
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    line-height: 1.8;
+    font-style: italic;
+    max-width: 180px;
+  }
+
+  .shoot-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-left: none;
+  }
+
+  .shoot-pillar {
+    padding: 40px 36px;
+    border-right: var(--border);
+    border-bottom: var(--border);
+    transition: background 0.15s;
+  }
+
+  .shoot-pillar:hover { background: #f7f5f0; }
+
+  .shoot-pillar:nth-child(even) { border-right: none; }
+  .shoot-pillar:nth-child(3),
+  .shoot-pillar:nth-child(4) { border-bottom: none; }
+
+  .shoot-pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .shoot-pillar-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .shoot-pillar-body {
+    font-size: 12px;
+    color: #444;
+    line-height: 1.85;
+  }
+
+  @media (max-width: 768px) {
+    .shoot-top { grid-template-columns: 1fr; }
+    .shoot-top-label { border-right: none; border-bottom: var(--border); padding: 20px; }
+    .shoot-headline { padding: 32px 24px; }
+    .shoot-body { grid-template-columns: 1fr; }
+    .shoot-device-col { border-right: none; border-bottom: var(--border); }
+    .shoot-pillars { grid-template-columns: 1fr; }
+    .shoot-pillar { border-right: none !important; }
+    .shoot-pillar:nth-child(3) { border-bottom: var(--border) !important; }
+  }
+
+  /* ─── RATES ─── */
+  .rates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: var(--border);
+    border-left: var(--border);
+  }
+
+  .rate-card {
+    border-right: var(--border);
+    border-bottom: var(--border);
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+  }
+
+  .rate-card:hover {
+    background: #f7f5f0;
+  }
+
+  .rate-card--featured {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .rate-card--featured:hover {
+    background: #1a1a1a;
+  }
+
+  .rate-tag {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .rate-tag--light {
+    color: #888;
+  }
+
+  .rate-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 5vw, 80px);
+    line-height: 1;
+    color: var(--red);
+  }
+
+  .rate-unit {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  .rate-divider {
+    height: 2px;
+    background: currentColor;
+    opacity: 0.12;
+    margin: 24px 0;
+  }
+
+  .rate-card--featured .rate-divider {
+    background: var(--white);
+    opacity: 0.2;
+  }
+
+  .rate-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .rate-perks li {
+    font-size: 12px;
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    color: inherit;
+    opacity: 0.85;
+  }
+
+  .rate-perks li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 10px;
+  }
+
+  .rate-cta {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 12px 20px;
+    border: var(--border);
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    background: transparent;
+    text-align: center;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .rate-cta:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+
+  .rate-perks li em {
+    font-style: normal;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .rate-cta--light {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  .rate-cta--light:hover {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  @media (max-width: 768px) {
+    .rates-grid { grid-template-columns: 1fr; }
   }
 
   /* ─── RESPONSIVE ─── */
@@ -536,11 +932,13 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">KISS<span>.</span>AGENCY</div>
+  <div class="nav-logo"><span class="nav-logo-kiss">KISS.</span><span class="nav-logo-agency">AGENCY</span></div>
   <ul class="nav-links">
     <li><a href="#who">Who</a></li>
     <li><a href="#what">What</a></li>
+    <li><a href="#how">How</a></li>
     <li><a href="#why">Why</a></li>
+    <li><a href="#rates">Rates</a></li>
     <li><a href="#contact">Start</a></li>
   </ul>
 </nav>
@@ -560,6 +958,8 @@
     <span class="ticker-sep">✦</span>
     Script. Shoot. Edit. Done.
     <span class="ticker-sep">✦</span>
+    <span class="ticker-brand">KISS.</span> AGENCY
+    <span class="ticker-sep">✦</span>
     One video. One dollar. One conversation.
     <span class="ticker-sep">✦</span>
     IG Reels &amp; TikTok
@@ -571,6 +971,8 @@
     No long-term contracts
     <span class="ticker-sep">✦</span>
     Script. Shoot. Edit. Done.
+    <span class="ticker-sep">✦</span>
+    <span class="ticker-brand">KISS.</span> AGENCY
     <span class="ticker-sep">✦</span>
   </span>
 </div>
@@ -665,6 +1067,71 @@
   </div>
 </section>
 
+<!-- HOW WE SHOOT -->
+<section class="section" id="how">
+  <div class="shoot-section">
+
+    <div class="shoot-top">
+      <div class="shoot-top-label">How we shoot</div>
+      <h2 class="shoot-headline">No crew.<br>No disruption.<br><span>Just a phone<br>that knows better.</span></h2>
+    </div>
+
+    <div class="shoot-body">
+
+      <div class="shoot-device-col">
+        <div class="phone-wrap">
+          <!-- iPhone 17 Pro: full edge-to-edge screen -->
+          <div class="phone-body">
+            <div class="phone-dynamic-island">
+              <div class="phone-rec-dot"></div>
+            </div>
+            <div class="phone-screen">
+              <div class="phone-screen-top">
+                <span class="phone-screen-tag">SHOT ON</span>
+              </div>
+              <div class="phone-screen-mid">
+                <div class="phone-model-name">iPhone<br>17 Pro</div>
+              </div>
+              <div class="phone-screen-bot">
+                <div class="phone-specs">4K &middot; Cinematic &middot; Log</div>
+              </div>
+            </div>
+          </div>
+          <div class="camera-label-row">
+            <span class="camera-label-text">iPhone 17 Pro</span>
+          </div>
+        </div>
+        <p class="shoot-device-note">The same camera Apple uses in their own ads. The difference is who's holding it.</p>
+      </div>
+
+      <div class="shoot-pillars">
+        <div class="shoot-pillar">
+          <div class="shoot-pillar-num">01</div>
+          <div class="shoot-pillar-title">We blend in</div>
+          <p class="shoot-pillar-body">No lighting rigs, no camera crews, no "hold on while we set up." We walk in, look like a customer, and get to work. Your team keeps moving. Your guests don't notice. The shoot happens around real life — not in spite of it.</p>
+        </div>
+        <div class="shoot-pillar">
+          <div class="shoot-pillar-num">02</div>
+          <div class="shoot-pillar-title">The environment is the content</div>
+          <p class="shoot-pillar-body">A busy Friday dinner rush looks better than a staged empty dining room. A vendor stand mid-chaos tells more story than a still product shot. We capture the energy that made someone want to build this thing in the first place.</p>
+        </div>
+        <div class="shoot-pillar">
+          <div class="shoot-pillar-num">03</div>
+          <div class="shoot-pillar-title">Platform-native quality</div>
+          <p class="shoot-pillar-body">Your audience watches on a phone. They trust content that feels like it came from one. iPhone 17 Pro shoots cinema-grade footage — but it lands on a For You Page like it belongs there. That credibility gap matters more than any camera spec.</p>
+        </div>
+        <div class="shoot-pillar">
+          <div class="shoot-pillar-num">04</div>
+          <div class="shoot-pillar-title">Low footprint, high output</div>
+          <p class="shoot-pillar-body">Small shoots mean faster turnaround, easier scheduling, and zero overhead passed to you. We can come back four times a month and your regulars still won't know we were there.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
 <!-- WHY -->
 <section class="section" id="why">
   <div class="section-inner">
@@ -676,6 +1143,70 @@
       </p>
       <p class="philosophy-footnote">
         The goal isn't just one video. It's giving you the mental and financial breathing room to test the waters, observe your own brand from the outside, and figure out your roadmap — without committing to a retainer or paying a premium you haven't earned yet.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- RATES -->
+<section class="section" id="rates">
+  <div class="section-inner">
+    <div class="section-label">After the trial</div>
+    <div class="section-content fade-in">
+      <h2 class="section-title">Ready to keep<br>the momentum?</h2>
+      <p style="max-width:520px; color:#333; line-height:1.85; margin-bottom:40px;">
+        Once you've seen what one video can do, the next step is yours. Pick what fits your pace — no pressure, no lock-in you didn't choose.
+      </p>
+
+      <div class="rates-grid">
+
+        <div class="rate-card">
+          <div class="rate-tag">Pay as you go</div>
+          <div class="rate-price">$79</div>
+          <div class="rate-unit">per video</div>
+          <div class="rate-divider"></div>
+          <ul class="rate-perks">
+            <li>One video, one invoice</li>
+            <li>Short-form only (Reels / TikTok)</li>
+            <li>Full script + edit included</li>
+            <li>No monthly commitment</li>
+          </ul>
+          <a href="#contact" class="rate-cta">Get a video</a>
+        </div>
+
+        <div class="rate-card rate-card--featured">
+          <div class="rate-tag rate-tag--light">Most flexible</div>
+          <div class="rate-price">$249</div>
+          <div class="rate-unit">/ month &mdash; up to 4 videos</div>
+          <div class="rate-divider"></div>
+          <ul class="rate-perks">
+            <li>Up to 4 videos per month</li>
+            <li>Short-form only (Reels / TikTok)</li>
+            <li>~$62 per video</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a href="#contact" class="rate-cta rate-cta--light">Get started</a>
+        </div>
+
+        <div class="rate-card">
+          <div class="rate-tag">Best value</div>
+          <div class="rate-price">$2,749</div>
+          <div class="rate-unit">/ year &mdash; up to 36 videos</div>
+          <div class="rate-divider"></div>
+          <ul class="rate-perks">
+            <li>Up to 36 videos per year</li>
+            <li>Short-form <em>+</em> long-form content</li>
+            <li>Long-form exclusive to this tier</li>
+            <li>~$76 per video, mixed format</li>
+            <li>Priority scheduling</li>
+          </ul>
+          <a href="#contact" class="rate-cta">Lock it in</a>
+        </div>
+
+      </div>
+
+      <p style="margin-top:32px; font-size:11px; color:var(--gray); font-style:italic; border-left: 3px solid #ddd; padding-left:14px; line-height:1.8;">
+        Short-form content (Reels, TikTok) is available across all plans. Long-form content — deeper brand storytelling, extended formats — is exclusive to the annual plan. It's not just more videos. It's a different kind of presence.
       </p>
     </div>
   </div>
