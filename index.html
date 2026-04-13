@@ -210,7 +210,7 @@
 
   .platforms-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     height: 80px;
   }
 
@@ -225,10 +225,8 @@
     font-weight: 700;
   }
 
-  .platform-chip:first-child {
+  .platform-chip:not(:last-child) {
     border-right: var(--border);
-    background: #0a0a0a;
-    color: var(--white);
   }
 
   .platform-chip .dot {
@@ -776,7 +774,7 @@
   /* ─── RATES ─── */
   .rates-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     border-top: var(--border);
     border-left: var(--border);
   }
@@ -1002,10 +1000,13 @@
     </div>
     <div class="platforms-row">
       <div class="platform-chip" style="background: var(--black); color: var(--white);">
-        <span class="dot"></span> Instagram Reels
+        Instagram Reels
       </div>
       <div class="platform-chip" style="background: var(--white);">
-        <span class="dot"></span> TikTok
+        TikTok
+      </div>
+      <div class="platform-chip" style="background: var(--black); color: var(--white);">
+        X
       </div>
     </div>
   </div>
@@ -1097,9 +1098,6 @@
               </div>
             </div>
           </div>
-          <div class="camera-label-row">
-            <span class="camera-label-text">iPhone 17 Pro</span>
-          </div>
         </div>
         <p class="shoot-device-note">The same camera Apple uses in their own ads. The difference is who's holding it.</p>
       </div>
@@ -1188,25 +1186,10 @@
           <a href="#contact" class="rate-cta rate-cta--light">Get started</a>
         </div>
 
-        <div class="rate-card">
-          <div class="rate-tag">Best value</div>
-          <div class="rate-price">$2,749</div>
-          <div class="rate-unit">/ year &mdash; up to 36 videos</div>
-          <div class="rate-divider"></div>
-          <ul class="rate-perks">
-            <li>Up to 36 videos per year</li>
-            <li>Short-form <em>+</em> long-form content</li>
-            <li>Long-form exclusive to this tier</li>
-            <li>~$76 per video, mixed format</li>
-            <li>Priority scheduling</li>
-          </ul>
-          <a href="#contact" class="rate-cta">Lock it in</a>
-        </div>
-
       </div>
 
       <p style="margin-top:32px; font-size:11px; color:var(--gray); font-style:italic; border-left: 3px solid #ddd; padding-left:14px; line-height:1.8;">
-        Short-form content (Reels, TikTok) is available across all plans. Long-form content — deeper brand storytelling, extended formats — is exclusive to the annual plan. It's not just more videos. It's a different kind of presence.
+        All packages include a custom script, shot list, mood board, and complete edit. 30-day performance reporting applies across every plan.
       </p>
     </div>
   </div>
